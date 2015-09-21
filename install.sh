@@ -14,9 +14,9 @@ printf "${magenta}Setting up SSH Installation...\n${NC}"
 
 read -p "Have you configured SSH? [Y/N] " -n 1;
 echo "";
-if [[ $REPLY =~ ^[Yy]$ ]]; then
+if [[ $REPLY =~ ^[Nn]$ ]]; then
 	# Generate a new SSH key
-	ssh-keygen -t rsa 4096 -C "ahmad.a.assaf@gmail.com"
+	ssh-keygen -t rsa -b 4096 -C "ahmad.a.assaf@gmail.com"
 	# Add your key to the ssh-agent
 	eval "$(ssh-agent -s)"
 	ssh-add ~/.ssh/id_rsa
