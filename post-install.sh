@@ -19,3 +19,4 @@ bash-it disable plugin postgres
 bash-it disable plugin todo
 bash-it disable completion conda
 bash-it disable alias emacs
+
