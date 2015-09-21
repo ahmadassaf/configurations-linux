@@ -61,3 +61,24 @@ bash "${SOURCE_LOCATION}/grc/install.sh"
 
 printf "${red}To configure SSH login without password please do that on your local machine:\ncat ~/.ssh/id_rsa.pub | ssh root@149.202.53.241 \"mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys\"\n\n${NC}"
 printf "${red}You also need to configure the git config file with: Host 149.202.53.241\nUser root\nIdentityFile ~/.ssh/id_rsa\nPubkeyAuthentication yes\nPreferredAuthentications publickey\n\n\n${NC}"
+
+source ~/.profile
+
+# Path to the bash it configuration
+export BASH_IT="$HOME/.bash_it"
+
+# Load Bash It
+source $BASH_IT/bash_it.sh
+
+bash-it enable alias all
+bash-it enable plugins all
+bash-it enable completion all
+
+bash-it disable plugin chruby
+bash-it disable plugin chruby-auto
+bash-it disable plugin postgres
+bash-it disable plugin z
+bash-it disable plugin postgres
+bash-it disable plugin todo
+bash-it disable completion conda
+bash-it disable alias emacs
