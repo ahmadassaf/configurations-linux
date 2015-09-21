@@ -10,6 +10,12 @@ export magenta='\e[0;35m'
 export red='\e[0;31m'
 export NC='\e[0m'
 
+# Find the location of the script, this brings out the location of the current directory
+export SCRIPT_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# The source directory and target directories.
+export SOURCE_LOCATION="$SCRIPT_DIRECTORY" # Contains the files and directories I want to work with.
+
 printf "${magenta}Setting up SSH Installation...\n${NC}"
 
 read -p "Have you configured SSH? [Y/N] " -n 1;
@@ -34,6 +40,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 	git clone -b linux "git@github.com:ahmadassaf/bash-it.git"
 	git clone -b linux "git@github.com:ahmadassaf/dotfiles.git"
+
+	ln -s "$SOURCE_LOCATION/bash-it" "${HOME}/.bash_it"
+	# run the bash-it install script
+	bash "${HOME}/.bash_it/install.sh"
 
 fi;
 
