@@ -29,16 +29,13 @@ fi;
 read -p "Can you confirm that you added the public key to Github? [Y/N] " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-	install
-fi;
 
-function install() {
 	printf "${magenta}Cloning Required repositories...${NC}"
 
 	git clone -b linux "git@github.com:ahmadassaf/bash-it.git"
 	git clone -b linux "git@github.com:ahmadassaf/dotfiles.git"
 
-}
+fi;
 
 
 printf "${red}To configure SSH login without password please do that on your local machine:\ncat ~/.ssh/id_rsa.pub | ssh root@149.202.53.241 \"mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys\"\n\n${NC}"
