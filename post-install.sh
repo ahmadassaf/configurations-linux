@@ -1,15 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
-/bin/bash-it enable alias all
-/bin/bash-it enable plugins all
-/bin/bash-it enable completion all
+# Path to the bash it configuration
+export BASH_IT="$HOME/.bash_it"
 
-/bin/bash-it disable plugin chruby
-/bin/bash-it disable plugin chruby-auto
-/bin/bash-it disable plugin postgres
-/bin/bash-it disable plugin z
-/bin/bash-it disable plugin postgres
-/bin/bash-it disable plugin todo
-/bin/bash-it disable completion conda
-/bin/bash-it disable alias emacs
+# Load Bash It
+source $BASH_IT/bash_it.sh
+
+bash-it enable alias all
+bash-it enable plugins all
+bash-it enable completion all
+
+bash-it disable plugin chruby
+bash-it disable plugin chruby-auto
+bash-it disable plugin postgres
+bash-it disable plugin z
+bash-it disable plugin postgres
+bash-it disable plugin todo
+bash-it disable completion conda
+bash-it disable alias emacs
