@@ -38,13 +38,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 	printf "${magenta}Cloning Required repositories...\n${NC}"
 
-	if [ -e "$HOME/.bash_it" ]; then
-		git clone -b linux "git@github.com:ahmadassaf/bash-it.git"
-	fi
-
-	if [ -e "$HOME/.dotfiles" ]; then
-		git clone --recursive -b linux "git@github.com:ahmadassaf/dotfiles.git"
-	fi
+	git clone -b linux "git@github.com:ahmadassaf/bash-it.git"
+	git clone --recursive -b linux "git@github.com:ahmadassaf/dotfiles.git"
 
 	ln -s "$SOURCE_LOCATION/bash-it" "${HOME}/.bash_it"
 
