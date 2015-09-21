@@ -38,8 +38,13 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 	printf "${magenta}Cloning Required repositories...${NC}"
 
-	git clone -b linux "git@github.com:ahmadassaf/bash-it.git"
-	git clone -b linux "git@github.com:ahmadassaf/dotfiles.git"
+	if [ -e "$HOME/.bash_it" ]; then
+		git clone -b linux "git@github.com:ahmadassaf/bash-it.git"
+	fi
+
+	if [ -e "$HOME/.dotfiles" ]; then
+		git clone -b linux "git@github.com:ahmadassaf/dotfiles.git"
+	fi
 
 	ln -s "$SOURCE_LOCATION/bash-it" "${HOME}/.bash_it"
 	# run the bash-it install script
