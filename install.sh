@@ -36,19 +36,26 @@ read -p "Can you confirm that you added the public key to Github? [Y/N] " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 
-	printf "${magenta}Cloning Required repositories...${NC}"
+	printf "${magenta}Cloning Required repositories...\n${NC}"
 
 	if [ -e "$HOME/.bash_it" ]; then
 		git clone -b linux "git@github.com:ahmadassaf/bash-it.git"
 	fi
 
 	if [ -e "$HOME/.dotfiles" ]; then
-		git clone -b linux "git@github.com:ahmadassaf/dotfiles.git"
+		git clone --recursive -b linux "git@github.com:ahmadassaf/dotfiles.git"
 	fi
 
 	ln -s "$SOURCE_LOCATION/bash-it" "${HOME}/.bash_it"
+
+	mkdir "${HOME}/.bash_it/aliases/enabled"
+	mkdir "${HOME}/.bash_it/completion/enabled"
+	mkdir "${HOME}/.bash_it/plugins/enabled"
+
 	# run the bash-it install script
 	bash "${HOME}/.bash_it/install.sh"
+
+	bash "${SOURCE_LOCATION}/dotfiles/install.sh"
 
 fi;
 
