@@ -25,22 +25,26 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 	printf "${magenta}Cloning Required repositories...\n${NC}"
 
-	git clone -b linux "git@github.com:ahmadassaf/bash-it.git"
-	git clone --recursive -b linux "git@github.com:ahmadassaf/dotfiles.git"
+	if [[ ! -d ${SOURCE_LOCATION}/bash-it ]]; then
+		git clone -b linux "git@github.com:ahmadassaf/bash-it.git"
+		ln -s "$SOURCE_LOCATION/bash-it" "${HOME}/.bash_it"
 
-	ln -s "$SOURCE_LOCATION/bash-it" "${HOME}/.bash_it"
+		mkdir "${HOME}/.bash_it/aliases/enabled"
+		mkdir "${HOME}/.bash_it/completion/enabled"
+		mkdir "${HOME}/.bash_it/plugins/enabled"
 
-	mkdir "${HOME}/.bash_it/aliases/enabled"
-	mkdir "${HOME}/.bash_it/completion/enabled"
-	mkdir "${HOME}/.bash_it/plugins/enabled"
+		# run the bash-it install script
+		bash "${HOME}/.bash_it/install.sh"
+		# run the bash-it configuraitons script
+		bash "${SOURCE_LOCATION}/configure-bash-it.sh"
+	fi
 
-	# run the bash-it install script
-	bash "${HOME}/.bash_it/install.sh"
-	# run the bash-it configuraitons script
-	bash "${SOURCE_LOCATION}/configure-bash-it.sh"
-	# run the dotfiles installation
-	bash "${SOURCE_LOCATION}/dotfiles/install.sh"
+	if [[ ! -d ${SOURCE_LOCATION}/dotfiles ]]; then
+		git clone --recursive -b linux "git@github.com:ahmadassaf/dotfiles.git"
 
+		# run the dotfiles installation
+		bash "${SOURCE_LOCATION}/dotfiles/install.sh"
+	fi
 fi;
 
 read -p "Would you like to install grc coloring? [Y/N] " -n 1;
