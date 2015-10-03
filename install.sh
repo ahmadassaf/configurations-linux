@@ -60,7 +60,7 @@ fi;
 read -p "Would you like to install the software packaged? [Y/N] " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-	bash "${SOURCE_LOCATION}/softwaret-install.sh"
+	bash "${SOURCE_LOCATION}/software-install.sh"
 fi;
 
 
