@@ -11,7 +11,7 @@ export BASH_IT="$HOME/.bash_it"
 source $BASH_IT/bash_it.sh
 
 bash-it enable alias all
-bash-it enable plugins all
+bash-it enable plugin all
 bash-it enable completion all
 
 bash-it disable plugin chruby
