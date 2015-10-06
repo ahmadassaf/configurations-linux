@@ -36,7 +36,7 @@ function apt-install() {
 		read -p "Would you like to install $global? [Y/N] " -n 1;
 		echo "";
 		if [[ $REPLY =~ ^[Yy]$ ]]; then
-			sudo apt-get install $global
+			sudo apt-get -y install $global
 		fi;
   done
 }
