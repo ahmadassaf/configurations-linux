@@ -28,6 +28,7 @@ globals=(
   mongodb-org
   phpmyadmin
   npm
+  php5-curl
 )
 
 # Install apt modules
