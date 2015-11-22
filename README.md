@@ -46,3 +46,16 @@ There are a bunch of useful Node.js command line tools that can be installed glo
 + [**tmi**](https://www.npmjs.com/package/tmi): Find out the image weight in your pages, compare to the BigQuery quantiles and discover what images you can optimize further
 + [**vtop**](https://www.npmjs.com/package/vtop): A graphical activity monitor for the command line
 
+## Post Installation Configurations
+
+### Enable PHP5 Opcache
+
+For Apache server located in `/etc/php5/apache2/php.ini`:
+ - Enable the Opcache `opcache.enable=1`
+ - Modify the Amount of RAM the Opcache Will Use `opcache.memory_consumption=128`
+ - Boost the Number of Scripts that Can Be Cached `opcache.max_accelerated_files=4000`
+ - Change the Revalidate Frequency `opcache_revalidate_freq = 240`
+ 
+ Afterwards, verify that opcache is enabled `sudo php5enmod opcache` and restart Apache `sudo service nginx restart`
+
+Ref: http://www.hostingadvice.com/how-to/enable-php-5-5-opcache-ubuntu-14-04/ 
