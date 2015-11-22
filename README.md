@@ -111,7 +111,7 @@ Follow up by setting up the user authorization within .htaccess file. Copy and p
 
 Below you'll see a quick explanation of each line
 
-* **AuthType: ** This refers to the type of authentication that will be used to the check the passwords. The passwords are checked via HTTP and the keyword Basic should not be changed.
+* **AuthType:** This refers to the type of authentication that will be used to the check the passwords. The passwords are checked via HTTP and the keyword Basic should not be changed.
 * **AuthName:** This is text that will be displayed at the password prompt. You can put anything here.
 * **AuthUserFile:** This line designates the server path to the password file (which we will create in the next step.)
 * **Require valid-user:** This line tells the .htaccess file that only users defined in the password file can access the phpMyAdmin login screen.
