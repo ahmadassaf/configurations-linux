@@ -15,6 +15,9 @@ sudo apt-get install libapache2-modsecurity
 #installing Spamhaus
 sudo apt-get install libapache2-mod-spamhaus
 
+# Installing mode-evasive
+sudo apt-get install libapache2-mod-evasive
+
 # Enabling some vital Apache Modules
 sudo a2enmod rewrite
 sudo a2enmod headers

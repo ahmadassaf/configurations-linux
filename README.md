@@ -212,8 +212,9 @@ Fill it in with the username and password that you generated. After you login yo
 
 ## References
 
- - [How To Install, Configure, And Use Modules In The Apache Web Server] (https://www.digitalocean.com/community/tutorials/how-to-install-configure-and-use-modules-in-the-apache-web-server)
+ - [How To Install, Configure, And Use Modules In The Apache Web Server](https://www.digitalocean.com/community/tutorials/how-to-install-configure-and-use-modules-in-the-apache-web-server)
  - [How to Get Started With mod_pagespeed with Apache on an Ubuntu and Debian Cloud Server](https://www.digitalocean.com/community/tutorials/how-to-get-started-with-mod_pagespeed-with-apache-on-an-ubuntu-and-debian-cloud-server)
  - [How To Set Up ModSecurity with Apache ](https://www.digitalocean.com/community/tutorials/how-to-set-up-modsecurity-with-apache-on-ubuntu-14-04-and-debian-8)
  - [How To Install and Secure phpMyAdmin ](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-14-04)
  - [How To Set Up Mod_Rewrite](https://www.digitalocean.com/community/tutorials/how-to-set-up-mod_rewrite)
+ - [How to install apache2 mod_security and mod_evasive](https://www.thefanclub.co.za/how-to/how-install-apache2-modsecurity-and-modevasive-ubuntu-1204-lts-server)
