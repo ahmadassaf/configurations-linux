@@ -59,3 +59,89 @@ For Apache server located in `/etc/php5/apache2/php.ini`:
  Afterwards, verify that opcache is enabled `sudo php5enmod opcache` and restart Apache `sudo service nginx restart`
 
 Ref: http://www.hostingadvice.com/how-to/enable-php-5-5-opcache-ubuntu-14-04/ 
+
+### Configure PHPmyadmin
+
+To set up under Apache all you need to do is include the following line in `/etc/apache2/apache2.conf`
+
+```bash
+Include /etc/phpmyadmin/apache.conf
+```
+
+Once phpMyAdmin is installed point your browser to `http://localhost/phpmyadmin` to start using it. You should be able to login using any users you've setup in MySQL. If no users have been setup, use admin with no password to login. 
+
+Should you get a **404** "Not Found" error when you point your browser to the location of phpMyAdmin (such as: `http://localhost/phpmyadmin`) the issue is likely caused by not checking the 'Apache 2' selection during installation. To redo the installation run the following:
+
+```bash
+sudo dpkg-reconfigure -plow phpmyadmin
+```
+
+>When the first prompt appears, apache2 is highlighted, but not selected. If you do not hit "SPACE" to select Apache, the installer will not move the necessary files during installation. Hit "SPACE", "TAB", and then "ENTER" to select Apache.
+
+Unfortunately older versions of phpMyAdmin have had serious security vulnerabilities including allowing remote users to eventually exploit root on the underlying virtual private server. One can prevent a majority of these attacks through a simple process: locking down the entire directory with Apache's native user/password restrictions which will prevent these remote users from even attempting to exploit older versions of phpMyAdmin.
+
+### Set Up the .htaccess File
+
+To set this up start off by allowing the .htaccess file to work within the phpmyadmin directory. You can accomplish this in the phpmyadmin configuration file:
+
+    sudo nano /etc/phpmyadmin/apache.conf
+
+Under the directory section, add the line "AllowOverride All" under "Directory Index", making the section look like this:
+
+    <Directory /usr/share/phpmyadmin>
+            Options FollowSymLinks
+            DirectoryIndex index.php
+            AllowOverride All
+            [...]
+
+### Configure the .htaccess file
+
+With the .htaccess file allowed, we can proceed to set up a native user whose login would be required to even access the phpmyadmin login page.
+
+Start by creating the .htaccess page in the phpmyadmin directory:
+
+    sudo nano /usr/share/phpmyadmin/.htaccess
+
+Follow up by setting up the user authorization within .htaccess file. Copy and paste the following text in:
+
+    AuthType Basic
+    AuthName "Restricted Files"
+    AuthUserFile /etc/apache2/.phpmyadmin.htpasswd
+    Require valid-user
+
+Below you'll see a quick explanation of each line
+
+* **AuthType:** This refers to the type of authentication that will be used to the check the passwords. The passwords are checked via HTTP and the keyword Basic should not be changed.
+* **AuthName:** This is text that will be displayed at the password prompt. You can put anything here.
+* **AuthUserFile:** This line designates the server path to the password file (which we will create in the next step.)
+* **Require valid-user:** This line tells the .htaccess file that only users defined in the password file can access the phpMyAdmin login screen.
+
+### Create the htpasswd file
+
+Now we will go ahead and create the valid user information.
+
+Start by creating a htpasswd file. Use the htpasswd command, and place the file in a directory of your choice as long as it is not accessible from a browser. Although you can name the password file whatever you prefer, the convention is to name it .htpasswd.
+
+    sudo htpasswd -c _/etc/apache2/.phpmyadmin.htpasswd_ _username_
+
+A prompt will ask you to provide and confirm your password.
+
+Once the username and passwords pair are saved you can see that the password is encrypted in the file.
+
+FInish up by restarting apache:
+
+    sudo service apache2 restart
+
+## Accessing phpMyAdmin
+
+phpMyAdmin will now be much more secure since only authorized users will be able to reach the login page. Accessing youripaddress/phpmyadmin should display a screen like [this][4].
+
+Fill it in with the username and password that you generated. After you login you can access phpmyadmin with the MySQL username and password.
+
+## References
+
+ - [How To Install, Configure, And Use Modules In The Apache Web Server] (https://www.digitalocean.com/community/tutorials/how-to-install-configure-and-use-modules-in-the-apache-web-server)
+ - [How to Get Started With mod_pagespeed with Apache on an Ubuntu and Debian Cloud Server](https://www.digitalocean.com/community/tutorials/how-to-get-started-with-mod_pagespeed-with-apache-on-an-ubuntu-and-debian-cloud-server)
+ - [How To Set Up ModSecurity with Apache ](https://www.digitalocean.com/community/tutorials/how-to-set-up-modsecurity-with-apache-on-ubuntu-14-04-and-debian-8)
+ - [How To Install and Secure phpMyAdmin ](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-14-04)
+ - [How To Set Up Mod_Rewrite](https://www.digitalocean.com/community/tutorials/how-to-set-up-mod_rewrite)
