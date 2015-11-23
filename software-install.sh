@@ -29,6 +29,7 @@ globals=(
   phpmyadmin
   npm
   php5-curl
+  lua5.2
 )
 
 # Install apt modules
