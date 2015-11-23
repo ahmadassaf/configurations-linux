@@ -115,7 +115,7 @@ To disable ModSecurity for a complete VirtualHost, place the following directive
 </IfModule>
 ```
 
-For omitting a particular directory:
+For omitting a particular directory (for PHPMyAdmin this is done in the file `/etc/phpmyadmin/apache.conf`:
 
 ```bash
 <Directory "/var/www/wp-admin">
