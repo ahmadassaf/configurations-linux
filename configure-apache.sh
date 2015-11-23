@@ -20,5 +20,3 @@ sudo a2enmod rewrite
 sudo a2enmod headers
 sudo a2enmod mod-security
 sudo a2enmod mod-spamhaus
-
-printf "${magenta}Visit this page: https://www.digitalocean.com/community/tutorials/how-to-install-configure-and-use-modules-in-the-apache-web-server for installation instructions and modifications\n${NC}"

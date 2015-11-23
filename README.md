@@ -55,10 +55,82 @@ For Apache server located in `/etc/php5/apache2/php.ini`:
  - Modify the Amount of RAM the Opcache Will Use `opcache.memory_consumption=128`
  - Boost the Number of Scripts that Can Be Cached `opcache.max_accelerated_files=4000`
  - Change the Revalidate Frequency `opcache_revalidate_freq = 240`
- 
+
  Afterwards, verify that opcache is enabled `sudo php5enmod opcache` and restart Apache `sudo service nginx restart`
 
-Ref: http://www.hostingadvice.com/how-to/enable-php-5-5-opcache-ubuntu-14-04/ 
+Ref: http://www.hostingadvice.com/how-to/enable-php-5-5-opcache-ubuntu-14-04/
+
+### Enable ModSec
+
+> Debugging and ensuring Modsec is installed can be done via `sudo apachectl -M | grep --color security2`
+
+- Enable `SecRuleEngine` by setting it to **On** in `/etc/modsecurity/modsecurity.conf`
+
+There are two configurations files for the rules `/etc/apache2/mods-enabled/modsecurity.conf` and `/etc/apache2/mods-enabled/security2.conf`
+
+**modsecurity.conf**
+
+```bash
+<IfModule security2_module>
+    Include /usr/share/modsecurity-crs/*.conf
+</IfModule>
+```
+
+**security2.conf**
+
+```bash
+<IfModule security2_module>
+ # Default Debian dir for modsecurity's persistent data
+ SecDataDir /var/cache/modsecurity
+
+ # Include all the *.conf files in /etc/modsecurity.
+ # Keeping your local configuration in that directory
+ # will allow for an easy upgrade of THIS file and
+ # make your life easier
+  IncludeOptional /etc/modsecurity/*.conf
+  IncludeOptional /usr/share/modsecurity-crs/activated_rules/*.conf
+</IfModule>
+```
+
+Now, we need to link the appropriate `.conf` files :
+
+Navigate to `/usr/share/modsecurity-crs/activated_rules/` and execute:
+
+ - `ln -s /usr/share/modsecurity-crs/base_rules/*.* .`
+ - `ln -s /usr/share/modsecurity-crs/optional_rules/*.* .`
+ - `ln -s /usr/share/modsecurity-crs/experimental_rules/*.* .`
+ - `ln -s /usr/share/modsecurity-crs/slr_rules/*.* .`
+
+Then debug via the `sudo apachectl -M | grep --color security2` and removed conflicting configuration files.
+
+### Excluding Directories/Domains (Optional)
+
+Sometimes it makes sense to exclude a particular directory or a domain name if it is running an application, like phpMyAdmin, as ModSecurity will block SQL queries. It is also better to exclude admin backends of CMS applications like WordPress. If you're following this tutorial on a fresh server, you can skip this step.
+
+To disable ModSecurity for a complete VirtualHost, place the following directives inside the `<VirtualHost>[...]</VirtualHost>` block in its virtual host file.
+
+```bash
+<IfModule security2_module>
+    SecRuleEngine Off
+</IfModule>
+```
+
+For omitting a particular directory:
+
+```bash
+<Directory "/var/www/wp-admin">
+    <IfModule security2_module>
+        SecRuleEngine Off
+    </IfModule>
+</Directory>
+```
+
+### Download Geo DB for rules set
+
+ - Navigate to `/usr/share/` and download the DB by `wget -N http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz`
+ - Then unzip the DB `gunzip GeoIP.dat.gz`
+ - Move the DB to its corresponding folder `mv GeoIP.dat /usr/share/GeoIP/`
+ - You might want to do this as well for the GeoLityCity DB at `http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz`
 
 ### Configure PHPmyadmin
 
@@ -68,7 +140,7 @@ To set up under Apache all you need to do is include the following line in `/etc
 Include /etc/phpmyadmin/apache.conf
 ```
 
-Once phpMyAdmin is installed point your browser to `http://localhost/phpmyadmin` to start using it. You should be able to login using any users you've setup in MySQL. If no users have been setup, use admin with no password to login. 
+Once phpMyAdmin is installed point your browser to `http://localhost/phpmyadmin` to start using it. You should be able to login using any users you've setup in MySQL. If no users have been setup, use admin with no password to login.
 
 Should you get a **404** "Not Found" error when you point your browser to the location of phpMyAdmin (such as: `http://localhost/phpmyadmin`) the issue is likely caused by not checking the 'Apache 2' selection during installation. To redo the installation run the following:
 
