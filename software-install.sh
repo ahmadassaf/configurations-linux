@@ -30,6 +30,7 @@ globals=(
   npm
   php5-curl
   lua5.2
+  libssh2-php
 )
 
 # Install apt modules
