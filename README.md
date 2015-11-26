@@ -218,3 +218,4 @@ Fill it in with the username and password that you generated. After you login yo
  - [How To Install and Secure phpMyAdmin ](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-14-04)
  - [How To Set Up Mod_Rewrite](https://www.digitalocean.com/community/tutorials/how-to-set-up-mod_rewrite)
  - [How to install apache2 mod_security and mod_evasive](https://www.thefanclub.co.za/how-to/how-install-apache2-modsecurity-and-modevasive-ubuntu-1204-lts-server)
+ - [How To Configure Secure Updates and Installations in WordPress on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-configure-secure-updates-and-installations-in-wordpress-on-ubuntu)
