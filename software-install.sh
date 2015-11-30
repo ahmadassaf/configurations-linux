@@ -31,6 +31,7 @@ globals=(
   php5-curl
   lua5.2
   libssh2-php
+  python-pip
 )
 
 # Install apt modules
