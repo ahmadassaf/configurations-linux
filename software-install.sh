@@ -48,6 +48,9 @@ function apt-install() {
 # Call the apt-install functions on the softwares list
 apt-install
 
+# Install PIP for python
+easy_install pip
+
 read -p "Would you like to install Node.js? [Y/N] " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
