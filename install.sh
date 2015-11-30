@@ -65,13 +65,13 @@ fi;
 read -p "This will install pip packages. Are you sure? [Y/N] " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-	sh "${HOME}/.pip_globals.sh"
+	bash "${HOME}/.pip_globals.sh"
 fi
 
 read -p "This will install NPM globals. Are you sure? [Y/N] " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-	sh "${HOME}/.npm_globals.sh"
+	bash "${HOME}/.npm_globals.sh"
 fi
 
 printf "${red}To configure SSH login without password please do that on your local machine:\ncat ~/.ssh/id_rsa.pub | ssh root@[IP_ADDRESS] \"mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys\"\n\n${NC}"
