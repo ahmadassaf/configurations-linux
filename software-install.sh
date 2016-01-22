@@ -32,6 +32,10 @@ globals=(
   lua5.2
   libssh2-php
   python-pip
+  rkhunter
+  chkrootkit
+  nmap
+  tiger
 )
 
 # Install apt modules

@@ -211,7 +211,11 @@ phpMyAdmin will now be much more secure since only authorized users will be able
 Fill it in with the username and password that you generated. After you login you can access phpmyadmin with the MySQL username and password.
 
 ## References
-
+ - [What Can Be Done To Secure Ubuntu Server ?](http://askubuntu.com/questions/146775/what-can-be-done-to-secure-ubuntu-server)
+ - [How To Protect an Apache Server with Fail2Ban on Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-protect-an-apache-server-with-fail2ban-on-ubuntu-14-04)
+ - [How to install mod_security and mod_evasive on an Ubuntu](https://www.rosehosting.com/blog/how-to-install-mod_security-and-mod_evasive-on-an-ubuntu-14-04-vps/)
+ - [Secure your Apache server from DDoS, Slowloris, and DNS Injection attacks](http://www.techrepublic.com/blog/smb-technologist/secure-your-apache-server-from-ddos-slowloris-and-dns-injection-attacks/)
+ - [How To Protect WordPress with Fail2Ban on Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-protect-wordpress-with-fail2ban-on-ubuntu-14-04)
  - [How To Install, Configure, And Use Modules In The Apache Web Server](https://www.digitalocean.com/community/tutorials/how-to-install-configure-and-use-modules-in-the-apache-web-server)
  - [How to Get Started With mod_pagespeed with Apache on an Ubuntu and Debian Cloud Server](https://www.digitalocean.com/community/tutorials/how-to-get-started-with-mod_pagespeed-with-apache-on-an-ubuntu-and-debian-cloud-server)
  - [How To Set Up ModSecurity with Apache ](https://www.digitalocean.com/community/tutorials/how-to-set-up-modsecurity-with-apache-on-ubuntu-14-04-and-debian-8)
