@@ -14,13 +14,13 @@ export SOURCE_LOCATION="$SCRIPT_DIRECTORY"
 # Run the SSH configurations
 bash "${SOURCE_LOCATION}/configure-ssh.sh"
 
-read -p "Can you confirm that you added the public key to Github? [Y/N] " REPLY;
+read -p "Can you confirm that you added the public key to Github? [Y/N] " -n 1;
 echo "";
-if  $REPLY =~ ^[Yy]$ ; then
+if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 	printf "Cloning Required repositories...\n"
 
-	if  ! -d ${SOURCE_LOCATION}/bash-it ; then
+	if [[ ! -d ${SOURCE_LOCATION}/bash-it ]]; then
 		git clone -b linux "git@github.com:ahmadassaf/bash-it.git"
 		ln -s "$SOURCE_LOCATION/bash-it" "${HOME}/.bash_it"
 
@@ -34,7 +34,7 @@ if  $REPLY =~ ^[Yy]$ ; then
 		bash "${SOURCE_LOCATION}/configure-bash-it.sh"
 	fi
 
-	if  ! -d ${SOURCE_LOCATION}/dotfiles ; then
+	if [[ ! -d ${SOURCE_LOCATION}/dotfiles ]]; then
 		git clone --recursive -b linux "git@github.com:ahmadassaf/dotfiles.git"
 
 		# run the dotfiles installation
@@ -42,24 +42,24 @@ if  $REPLY =~ ^[Yy]$ ; then
 	fi
 fi;
 
-read -p "Would you like to install grc coloring? [Y/N] " REPLY;
+read -p "Would you like to install grc coloring? [Y/N] " -n 1;
 echo "";
-if  $REPLY =~ ^[Yy]$ ; then
+if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 	printf "Installing grc coloring...\n"
 	git clone "https://github.com/garabik/grc"
 	sudo bash "${SOURCE_LOCATION}/grc/install.sh"
 fi;
 
-read -p "Would you like to install the software packaged? [Y/N] " REPLY;
+read -p "Would you like to install the software packaged? [Y/N] " -n 1;
 echo "";
-if  $REPLY =~ ^[Yy]$ ; then
+if [[ $REPLY =~ ^[Yy]$ ]]; then
 	bash "${SOURCE_LOCATION}/software-install.sh"
 fi;
 
-read -p "This will install pip packages. Are you sure? [Y/N] " REPLY;
+read -p "This will install pip packages. Are you sure? [Y/N] " -n 1;
 echo "";
-if  $REPLY =~ ^[Yy]$ ; then
+if [[ $REPLY =~ ^[Yy]$ ]]; then
 	bash "${HOME}/.pip_globals.sh"
 fi
 
