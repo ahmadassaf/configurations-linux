@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-printf "${magenta}Installing recommended softwares...\n${NC}"
+printf "Installing recommended softwares...\n"
 
 # Adding MongoDB keys
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10

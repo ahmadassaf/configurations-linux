@@ -3,7 +3,7 @@ set -e
 
 source ~/.profile
 
-printf "${magenta}Configuring Bash-it installation...\n${NC}"
+printf "Configuring Bash-it installation...\n"
 # Path to the bash it configuration
 export BASH_IT="$HOME/.bash_it"
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-printf "${magenta}Installing apache modules and configurations...\n${NC}"
+printf "Installing apache modules and configurations...\n"
 
 # Installing pagespeed module
 wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb

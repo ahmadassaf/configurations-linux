@@ -2,13 +2,8 @@
 set -e
 
 printf "\n ===========================================================
-            ${magenta}Installing Server Configurations${NC}
+            Installing Server Configurations
  =========================================================== \n"
-
-# Colors and visual Configurations
-export magenta='\e[0;35m'
-export red='\e[0;31m'
-export NC='\e[0m'
 
 # Find the location of the script, this brings out the location of the current directory
 export SCRIPT_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -23,7 +18,7 @@ read -p "Can you confirm that you added the public key to Github? [Y/N] " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 
-	printf "${magenta}Cloning Required repositories...\n${NC}"
+	printf "Cloning Required repositories...\n"
 
 	if [[ ! -d ${SOURCE_LOCATION}/bash-it ]]; then
 		git clone -b linux "git@github.com:ahmadassaf/bash-it.git"
@@ -51,7 +46,7 @@ read -p "Would you like to install grc coloring? [Y/N] " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 
-	printf "${magenta}Installing grc coloring...\n${NC}"
+	printf "Installing grc coloring...\n"
 	git clone "https://github.com/garabik/grc"
 	sudo bash "${SOURCE_LOCATION}/grc/install.sh"
 fi;
@@ -68,7 +63,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	bash "${HOME}/.pip_globals.sh"
 fi
 
-printf "${red}To configure SSH login without password please do that on your local machine:\ncat ~/.ssh/id_rsa.pub | ssh root@[IP_ADDRESS] \"mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys\"\n\n${NC}"
-printf "${red}You also need to configure the git config file with: Host [IP_ADDRESS]\nUser root\nIdentityFile ~/.ssh/id_rsa\nPubkeyAuthentication yes\nPreferredAuthentications publickey\n\n\n${NC}"
+printf "To configure SSH login without password please do that on your local machine:\ncat ~/.ssh/id_rsa.pub | ssh root@[IP_ADDRESS] \"mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys\"\n\n"
+printf "You also need to configure the git config file with: Host [IP_ADDRESS]\nUser root\nIdentityFile ~/.ssh/id_rsa\nPubkeyAuthentication yes\nPreferredAuthentications publickey\n\n\n"
 
 source ~/.profile
