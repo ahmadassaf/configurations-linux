@@ -14,7 +14,7 @@ export SOURCE_LOCATION="$SCRIPT_DIRECTORY"
 # Run the SSH configurations
 bash "${SOURCE_LOCATION}/configure-ssh.sh"
 
-read -p "Can you confirm that you added the public key to Github? [Y/N] " -n 1;
+read -p "Can you confirm that you added the public key to Github? [Y/N] ";
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 
@@ -42,7 +42,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	fi
 fi;
 
-read -p "Would you like to install grc coloring? [Y/N] " -n 1;
+read -p "Would you like to install grc coloring? [Y/N] " ;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 
@@ -51,13 +51,13 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	sudo bash "${SOURCE_LOCATION}/grc/install.sh"
 fi;
 
-read -p "Would you like to install the software packaged? [Y/N] " -n 1;
+read -p "Would you like to install the software packaged? [Y/N] " ;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	bash "${SOURCE_LOCATION}/software-install.sh"
 fi;
 
-read -p "This will install pip packages. Are you sure? [Y/N] " -n 1;
+read -p "This will install pip packages. Are you sure? [Y/N] " ;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	bash "${HOME}/.pip_globals.sh"
