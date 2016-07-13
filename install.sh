@@ -48,7 +48,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 	printf "Installing grc coloring...\n"
 	git clone "https://github.com/garabik/grc"
-	sudo bash "${SOURCE_LOCATION}/grc/install.sh"
+	cd "${SOURCE_LOCATION}/grc" && sudo bash "install.sh"
 fi;
 
 read -p "Would you like to install the software packaged? [Y/N] " -n 1;
