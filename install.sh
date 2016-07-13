@@ -47,7 +47,9 @@ echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 	printf "Installing grc coloring...\n"
-	git clone "https://github.com/garabik/grc"
+    if [[ ! -d ${SOURCE_LOCATION}/grc ]]; then
+	   git clone "https://github.com/garabik/grc"
+    fi
 	cd "${SOURCE_LOCATION}/grc" && sudo bash "install.sh"
 fi;
 
