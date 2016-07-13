@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
+source ~/.bashrc
+
 printf "Configuring Bash-it installation...\n"
 # Path to the bash it configuration
 export BASH_IT="$HOME/.bash_it"
-
-# Load Bash It
-source $BASH_IT/bash_it.sh
 
 bash-it enable alias all
 bash-it enable plugin all
