@@ -41,6 +41,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     bash "${SOURCE_LOCATION}/dotfiles/install.sh"
 fi;
 
+echo "";
 read -p "Would you like to install grc coloring? [Y/N] " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
