@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-source ~/.profile
-
 printf "Configuring Bash-it installation...\n"
 # Path to the bash it configuration
 export BASH_IT="$HOME/.bash_it"
