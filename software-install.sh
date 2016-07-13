@@ -12,6 +12,8 @@ sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources
 
 # Adding JUJU repository
 sudo add-apt-repository ppa:juju/stable
+## Adding fasd repository
+sudo add-apt-repository ppa:aacebedo/fasd
 # Updating apt to refresh repos
 sudo apt-get update
 
@@ -36,6 +38,7 @@ globals=(
   chkrootkit
   nmap
   tiger
+  fasd
 )
 
 # Install apt modules
@@ -60,10 +63,10 @@ echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	# Instal NVM to install Node.js
 	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.27.1/install.sh | bash
-	echo "source ~/.nvm/nvm.sh" >> "${HOME}/.bashrc"
-	source ~/.bashrc
+	echo "source ~/.nvm/nvm.sh" >> "${HOME}/.bash_profile"
+	source ~/.bash_profile
 	nvm install stable
-	source ~/.bashrc
+	source ~/.bash_profile
 	# Fix the node.js and node issue in Ubuntu
 	ln -s /usr/bin/nodejs /bin/node
 fi;

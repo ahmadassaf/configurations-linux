@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-source ~/.bashrc
+source ~/.bash_profile
 
 printf "Configuring Bash-it installation...\n"
 # Path to the bash it configuration
@@ -15,7 +15,6 @@ bash-it disable plugin chruby
 bash-it disable plugin chruby-auto
 bash-it disable plugin postgres
 bash-it disable plugin z
-bash-it disable plugin postgres
 bash-it disable plugin todo
 bash-it disable completion conda
 bash-it disable alias emacs
