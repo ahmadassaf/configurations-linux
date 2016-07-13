@@ -36,10 +36,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 	if [[ ! -d ${SOURCE_LOCATION}/dotfiles ]]; then
 		git clone --recursive -b linux "git@github.com:ahmadassaf/dotfiles.git"
-
-		# run the dotfiles installation
-		bash "${SOURCE_LOCATION}/dotfiles/install.sh"
 	fi
+    # run the dotfiles installation
+    bash "${SOURCE_LOCATION}/dotfiles/install.sh"
 fi;
 
 read -p "Would you like to install grc coloring? [Y/N] " -n 1;
