@@ -15,5 +15,9 @@ if [[ $REPLY =~ ^[Nn]$ ]]; then
 	ssh-add ~/.ssh/id_rsa
 
 	# Add your SSH key to your account
-	printf "Please dont forget to add your id_rsa.pub key to Github"
+    echo "";
+    cat ~/.ssh/id_rsa.pub
+    echo "";
+
+	printf "Please dont forget to add your id_rsa.pub key [above] to Github before you continue"
 fi;
