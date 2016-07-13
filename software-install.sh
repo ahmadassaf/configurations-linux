@@ -61,9 +61,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	# Instal NVM to install Node.js
 	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.27.1/install.sh | bash
 	echo "source ~/.nvm/nvm.sh" >> "${HOME}/.bashrc"
-	source ~/.profile
+	source ~/.bashrc
 	nvm install stable
-	source ~/.profile
+	source ~/.bashrc
 	# Fix the node.js and node issue in Ubuntu
 	ln -s /usr/bin/nodejs /bin/node
 fi;
